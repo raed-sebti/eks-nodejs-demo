@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecsdemo-nodejs
+  name: eks-nodejs-demo
   labels:
     app: ecsdemo-nodejs
-  namespace: default
+  namespace: eks-nodejs-demo
 spec:
   replicas: 10
   selector:
     matchLabels:
-      app: ecsdemo-nodejs
+      app: eks-nodejs-demo
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        app: ecsdemo-nodejs
+        app: eks-nodejs-demo
     spec:
       containers:
       - image: brentley/ecsdemo-nodejs:latest
         imagePullPolicy: Always
-        name: ecsdemo-nodejs
+        name: eks-nodejs-demo
         ports:
         - containerPort: 3000
           protocol: TCP
